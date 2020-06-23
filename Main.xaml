@@ -1,0 +1,272 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.AppServer="18.209.242.206" this:Main.SystemID="S4H" this:Main.Instance="00" this:Main.Client="100" this:Main.CredentialName="DSF_SAPAdmin" this:Main.ContinueOnErrors="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usba="clr-namespace:UiPath.SAP.BAPI.Activities;assembly=UiPath.SAP.BAPI.Activities" xmlns:usbam="clr-namespace:UiPath.SAP.BAPI.Activities.Model;assembly=UiPath.SAP.BAPI.Activities" xmlns:usbc="clr-namespace:UiPath.SAP.BAPI.ConnectionService;assembly=UiPath.SAP.BAPI" xmlns:usbcss="clr-namespace:UiPath.SAP.BAPI.ConnectionService.SapConnectionService.SapReturnTypes;assembly=UiPath.SAP.BAPI" xmlns:usbm="clr-namespace:UiPath.SAP.BAPI.Model;assembly=UiPath.SAP.BAPI" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="AppServer" Type="InArgument(x:String)" />
+    <x:Property Name="SystemID" Type="InArgument(x:String)" />
+    <x:Property Name="Instance" Type="InArgument(x:String)" />
+    <x:Property Name="Client" Type="InArgument(x:String)" />
+    <x:Property Name="CredentialName" Type="InArgument(x:String)" />
+    <x:Property Name="Usernames" Type="InArgument(scg:IEnumerable(x:String))" />
+    <x:Property Name="ContinueOnErrors" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1129.77777777778,2245.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="25">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.SAP.BAPI.ConnectionService.SapConnectionService.SapReturnTypes</x:String>
+      <x:String>UiPath.SAP.BAPI.ConnectionService</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="18">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.SAP.BAPI</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SAP_DeleteUser" sap:VirtualizedContainerService.HintSize="1140,2080.44444444444" sap2010:WorkflowViewState.IdRef="Sequence_9">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="1098.22222222222,1988" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="adminUsername" />
+        <Variable x:TypeArguments="ss:SecureString" Name="pw" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[CredentialName]" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="1056.44444444444,22.2222222222222" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[pw]" Username="[adminUsername]" />
+      <usba:SapApplicationScope AdvancedParameters="{x:Null}" ExistingConnectionService="{x:Null}" Language="{x:Null}" LogonGroup="{x:Null}" MessageServer="{x:Null}" SapConnectionService="{x:Null}" SapRouterString="{x:Null}" SncLibraryPath="{x:Null}" SncMode="{x:Null}" SncPartnerName="{x:Null}" SncQop="{x:Null}" SncSso="{x:Null}" AppServer="[AppServer]" Client="[Client]" DesignAppServer="18.209.242.206" DesignClient="100" DesignLanguage="EN" DesignSystemId="S4H" DesignSystemNumber="00" DesignUser="sreutter" DisplayName="SAP Application Scope" sap:VirtualizedContainerService.HintSize="1056.44444444444,1833.33333333333" sap2010:WorkflowViewState.IdRef="SapApplicationScope_2" Password="[pw]" StatefulConnection="True" SystemId="[SystemID]" SystemNumber="[Instance]" User="[adminUsername]">
+        <usba:SapApplicationScope.Body>
+          <ActivityAction x:TypeArguments="usbc:IConnectionService">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="usbc:IConnectionService" Name="ConnectionService" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1022.66666666667,1724" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="980.888888888889,1631.55555555556" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[Usernames]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="x:String">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:String" Name="username" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="945.333333333333,1496" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="errormsg" />
+                        <Variable x:TypeArguments="scg:List(usbcss:BapiRet2)" Name="bapiResult" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="903.555555555556,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Deleting user &quot; &amp; username]" />
+                      <usba:InvokeSapBapi BapiDescription="Delete Users" BapiName="BAPI_USER_DELETE" BapiSelected="True" DisplayName="BAPI_USER_DELETE" sap:VirtualizedContainerService.HintSize="903.555555555556,59.5555555555556" sap2010:WorkflowViewState.IdRef="InvokeSapBapi_2">
+                        <usba:InvokeSapBapi.AllArguments>
+                          <scg:Dictionary x:TypeArguments="x:String, usbam:BapiArgumentUiModel">
+                            <x:Reference>__ReferenceID0<x:Key>USERNAME</x:Key></x:Reference>
+                            <x:Reference>__ReferenceID1<x:Key>RETURN</x:Key></x:Reference>
+                          </scg:Dictionary>
+                        </usba:InvokeSapBapi.AllArguments>
+                        <usba:InvokeSapBapi.OptionalArguments>
+                          <scg:List x:TypeArguments="usbam:BapiArgumentUiModel" Capacity="0" />
+                        </usba:InvokeSapBapi.OptionalArguments>
+                        <usba:InvokeSapBapi.SelectedArgumentList>
+                          <scg:List x:TypeArguments="usbam:BapiArgumentUiModel" Capacity="2">
+                            <usbam:BapiArgumentUiModel FieldArguments="{x:Null}" x:Name="__ReferenceID0" DataType="String" DataTypeAsString="String" DecimalLength="0" Description="User Name" Direction="In" DirectionAsString="In" IsSelected="False" Length="12" Name="USERNAME" Optional="False" ServiceDataType="">
+                              <usbam:BapiArgumentUiModel.ArgumentValue>
+                                <InArgument x:TypeArguments="x:String">[username]</InArgument>
+                              </usbam:BapiArgumentUiModel.ArgumentValue>
+                            </usbam:BapiArgumentUiModel>
+                            <usbam:BapiArgumentUiModel Length="{x:Null}" x:Name="__ReferenceID1" DataType="List_BapiRet2" DataTypeAsString="List&lt;BapiRet2&gt;" DecimalLength="0" Description="Return Structure" Direction="InOut" DirectionAsString="In/Out" IsSelected="False" Name="RETURN" Optional="False" ServiceDataType="BAPIRET2">
+                              <usbam:BapiArgumentUiModel.ArgumentValue>
+                                <InOutArgument x:TypeArguments="scg:List(usbcss:BapiRet2)">[bapiResult]</InOutArgument>
+                              </usbam:BapiArgumentUiModel.ArgumentValue>
+                              <usbam:BapiArgumentUiModel.FieldArguments>
+                                <scg:List x:TypeArguments="usbm:FieldArgument" Capacity="16">
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Message type: S Success, E Error, W Warning, I Info, A Abort" Length="1" Name="TYPE" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Message Class" Length="20" Name="ID" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Message Number" Length="3" Name="NUMBER" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Message Text" Length="220" Name="MESSAGE" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Application log: log number" Length="20" Name="LOG_NO" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Application log: Internal message serial number" Length="6" Name="LOG_MSG_NO" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Message Variable" Length="50" Name="MESSAGE_V1" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Message Variable" Length="50" Name="MESSAGE_V2" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Message Variable" Length="50" Name="MESSAGE_V3" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Message Variable" Length="50" Name="MESSAGE_V4" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Parameter Name" Length="32" Name="PARAMETER" />
+                                  <usbm:FieldArgument DataType="Integer" DecimalLength="0" Description="Lines in parameter" Length="4" Name="ROW" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Field in parameter" Length="30" Name="FIELD" />
+                                  <usbm:FieldArgument DataType="String" DecimalLength="0" Description="Logical system from which message originates" Length="10" Name="SYSTEM" />
+                                </scg:List>
+                              </usbam:BapiArgumentUiModel.FieldArguments>
+                            </usbam:BapiArgumentUiModel>
+                          </scg:List>
+                        </usba:InvokeSapBapi.SelectedArgumentList>
+                      </usba:InvokeSapBapi>
+                      <Assign sap:VirtualizedContainerService.HintSize="903.555555555556,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_5">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[errormsg]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <Literal x:TypeArguments="x:String" Value="" />
+                          </InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:ForEach x:TypeArguments="usbcss:BapiRet2" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="903.555555555556,439.555555555556" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[bapiResult]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="usbcss:BapiRet2">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="usbcss:BapiRet2" Name="res" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="525.333333333333,304" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If Condition="[res.Type &lt;&gt; &quot;S&quot;]" sap:VirtualizedContainerService.HintSize="483.555555555556,211.555555555556" sap2010:WorkflowViewState.IdRef="If_3">
+                                <If.Then>
+                                  <Assign sap:VirtualizedContainerService.HintSize="262.222222222222,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[errormsg]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[errormsg &amp; Environment.NewLine &amp; res.Message]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </If.Then>
+                              </If>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <If Condition="[errormsg &lt;&gt; &quot;&quot;]" sap:VirtualizedContainerService.HintSize="903.555555555556,589.333333333333" sap2010:WorkflowViewState.IdRef="If_5">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="525.333333333333,438.222222222222" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="483.555555555556,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Failed deleting user &quot; &amp; username &amp; errormsg]" />
+                            <If Condition="[not ContinueOnErrors]" sap:VirtualizedContainerService.HintSize="483.555555555556,211.111111111111" sap2010:WorkflowViewState.IdRef="If_4">
+                              <If.Then>
+                                <Throw Exception="[new BusinessRuleException(&quot;SAP errors occured:&quot; &amp; errormsg)]" sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.777777777778,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Deleted user &quot; &amp; username]" />
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+            </Sequence>
+          </ActivityAction>
+        </usba:SapApplicationScope.Body>
+        <usba:SapApplicationScope.DesignAdvancedParameters>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignAdvancedParameters>
+        <usba:SapApplicationScope.DesignLogonGroup>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignLogonGroup>
+        <usba:SapApplicationScope.DesignMessageServer>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignMessageServer>
+        <usba:SapApplicationScope.DesignPassword>
+          <ss:SecureString />
+        </usba:SapApplicationScope.DesignPassword>
+        <usba:SapApplicationScope.DesignSapRouterString>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignSapRouterString>
+        <usba:SapApplicationScope.DesignSncLibraryPath>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignSncLibraryPath>
+        <usba:SapApplicationScope.DesignSncMode>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignSncMode>
+        <usba:SapApplicationScope.DesignSncPartnerName>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignSncPartnerName>
+        <usba:SapApplicationScope.DesignSncQOP>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignSncQOP>
+        <usba:SapApplicationScope.DesignSncSso>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </usba:SapApplicationScope.DesignSncSso>
+      </usba:SapApplicationScope>
+    </Sequence>
+  </Sequence>
+</Activity>
